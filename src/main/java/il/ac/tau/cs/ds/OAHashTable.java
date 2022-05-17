@@ -3,10 +3,11 @@ package il.ac.tau.cs.ds;
 public abstract class OAHashTable implements IHashTable {
 	
 	private HashTableElement [] table;
+	private ModHash hashFunction;
 	
 	public OAHashTable(int m) {
 		this.table = new HashTableElement[m];
-		// TODO add to constructor as needed
+		this.hashFunction = ModHash.GetFunc(m, 1000000007);
 	}
 	
 	
