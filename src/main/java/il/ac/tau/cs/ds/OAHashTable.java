@@ -12,9 +12,7 @@ public abstract class OAHashTable implements IHashTable {
 
     public OAHashTable(int m) {
         this.table = new HashTableElement[m];
-        // TODO add to constructor as needed
     }
-
 
     @Override
     public HashTableElement Find(long key) {
