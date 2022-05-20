@@ -1,4 +1,4 @@
-package il.ac.tau.cs.ds;
+package il.ac.tau.cs.ds.table;
 
 public abstract class OAHashTable implements IHashTable {
 
@@ -9,11 +9,21 @@ public abstract class OAHashTable implements IHashTable {
     }
 
     private HashTableElement[] table;
+    private int size;
     protected int m;
 
     public OAHashTable(int m) {
         this.table = new HashTableElement[m];
+        this.size = 0;
         this.m = m;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public float calculateLoadFactor() {
+        return (float) size / m;
     }
 
     @Override
@@ -47,6 +57,7 @@ public abstract class OAHashTable implements IHashTable {
 
         if (firstAvailableIndex > -1) {
             table[firstAvailableIndex] = hte;
+            size++;
         } else {
             throw new TableIsFullException(hte);
         }
@@ -60,6 +71,7 @@ public abstract class OAHashTable implements IHashTable {
                 throw new KeyDoesntExistException(key);
             } else if (table[index].GetKey() == key) {
                 table[index] = new DeletedHashTableElement(key, 0);
+                size--;
                 return;
             }
         }

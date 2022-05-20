@@ -1,4 +1,4 @@
-package il.ac.tau.cs.ds;
+package il.ac.tau.cs.ds.table;
 
 public class DoubleHashTable extends OAHashTable {
     private final ModHash h1;
