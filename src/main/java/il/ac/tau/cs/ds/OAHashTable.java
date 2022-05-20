@@ -9,9 +9,11 @@ public abstract class OAHashTable implements IHashTable {
     }
 
     private HashTableElement[] table;
+    protected int m;
 
     public OAHashTable(int m) {
         this.table = new HashTableElement[m];
+        this.m = m;
     }
 
     @Override

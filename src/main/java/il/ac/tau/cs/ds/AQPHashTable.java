@@ -10,7 +10,8 @@ public class AQPHashTable extends OAHashTable {
 
     @Override
     public int Hash(long x, int i) {
-        // TODO implement hash function
-        return 0;
+        int rhs = i % 2 == 0 ? i * i : -(i * i);
+        int result = (hashFunction.Hash(x) + rhs + m) % m;
+        return result >= 0 ? result : result + m;
     }
 }

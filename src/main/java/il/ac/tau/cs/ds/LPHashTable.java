@@ -10,8 +10,7 @@ public class LPHashTable extends OAHashTable {
 
     @Override
     public int Hash(long x, int i) {
-        // TODO implement hash function
-        return 0;
+        int result = (hashFunction.Hash(x) + i) % m;
+        return result >= 0 ? result : result + m;
     }
-
 }

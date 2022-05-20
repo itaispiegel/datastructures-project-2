@@ -7,13 +7,12 @@ public class DoubleHashTable extends OAHashTable {
     public DoubleHashTable(int m, long p) {
         super(m);
         h1 = ModHash.GetFunc(m, p);
-        h2 = ModHash.GetFunc(m - 2, p);
+        h2 = ModHash.GetFunc(m - 1, p);
     }
 
     @Override
     public int Hash(long x, int i) {
-        // TODO implement hash function
-        return 0;
+        int result = (h1.Hash(x) + i * (h2.Hash(x) + 1)) % m;
+        return result >= 0 ? result : result + m;
     }
-
 }
