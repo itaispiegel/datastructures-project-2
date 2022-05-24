@@ -13,9 +13,8 @@ public class ExperimentUtils {
     public static void addRandomItemsToTable(OAHashTable table, Random random, int size) throws
             IHashTable.TableIsFullException, IHashTable.KeyAlreadyExistsException {
 
-        for (int i = 0; i < size; i++) {
-            long a = generateRandomSequenceElement(i, random);
-            HashTableElement element = new HashTableElement(a, a);
+        List<HashTableElement> sequence = generateRandomSequence(size, random);
+        for (HashTableElement element : sequence) {
             table.Insert(element);
         }
     }
@@ -25,10 +24,10 @@ public class ExperimentUtils {
         return 100L * index + b;
     }
 
-    public static List<Long> generateRandomSequence(int size, Random random) {
+    public static List<HashTableElement> generateRandomSequence(int size, Random random) {
         return LongStream.range(0, size)
-                .map(i -> generateRandomSequenceElement((int) i, random))
-                .boxed()
+                .map(l -> generateRandomSequenceElement((int) l, random))
+                .mapToObj(l -> new HashTableElement(l, 0))
                 .collect(Collectors.toList());
     }
 }

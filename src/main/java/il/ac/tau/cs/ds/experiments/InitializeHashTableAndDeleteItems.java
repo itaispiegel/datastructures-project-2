@@ -17,13 +17,13 @@ public class InitializeHashTableAndDeleteItems {
         Random random = new Random(10);
         DoubleHashTable table = new DoubleHashTable(m, p);
 
-        List<Long> sequence = ExperimentUtils.generateRandomSequence(m / 2, random);
+        List<HashTableElement> sequence = ExperimentUtils.generateRandomSequence(m / 2, random);
         int sequenceSize = sequence.size();
 
         for (int i = 0; i < sequenceSize; i++) {
-            long element = sequence.get(i);
+            HashTableElement hte = sequence.get(i);
             long startTime = System.nanoTime();
-            table.Insert(new HashTableElement(element, element));
+            table.Insert(hte);
             long endTime = System.nanoTime();
 
             if (i < 3) {
@@ -35,9 +35,9 @@ public class InitializeHashTableAndDeleteItems {
         System.out.println("Inserted all items, now starting to delete\n");
 
         for (int i = 0; i < sequenceSize; i++) {
-            long element = sequence.get(i);
+            HashTableElement hte = sequence.get(i);
             long startTime = System.nanoTime();
-            table.Delete(element);
+            table.Delete(hte.GetKey());
             long endTime = System.nanoTime();
 
             if (i < 3) {

@@ -2,6 +2,7 @@ package il.ac.tau.cs.ds.experiments;
 
 import il.ac.tau.cs.ds.table.*;
 
+import java.util.List;
 import java.util.Random;
 
 public class InitializePartialHashTables {
@@ -11,8 +12,12 @@ public class InitializePartialHashTables {
     public static long initializeTableAndGetElapsedTime(OAHashTable table, Random random, int size) throws
             IHashTable.TableIsFullException, IHashTable.KeyAlreadyExistsException {
 
+        List<HashTableElement> sequence = ExperimentUtils.generateRandomSequence(size, random);
+
         long startTime = System.currentTimeMillis();
-        ExperimentUtils.addRandomItemsToTable(table, random, size);
+        for (HashTableElement element : sequence) {
+            table.Insert(element);
+        }
         long endTime = System.currentTimeMillis();
 
         return endTime - startTime;
